@@ -1,5 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/expanded/openThread.dart';
+import 'package:flutterapp/inputui/event.dart';
 import 'package:flutterapp/model/forum_model.dart';
 
 class forum_element extends StatefulWidget {
@@ -44,7 +46,7 @@ class _forum_elementState extends State<forum_element> {
             child: Stack(children: <Widget>[
               InkWell(
                 onTap: () {
-                  Navigator.of(context).pushNamed('/detail');
+                  dialog(hh, ww, openThread(model.ttl, model.body));
                   setState(() {});
                 },
               ),
@@ -73,30 +75,35 @@ class _forum_elementState extends State<forum_element> {
                       height: hh / 8,
                       width: ww * .6,
                       margin: EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            height: hh * 0.02,
-                            child: Text(
-                              model.ttl,
+                      child: InkWell(
+                        onTap: () {
+                          dialog(hh, ww, openThread(model.ttl, model.body));
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              height: hh * 0.02,
+                              child: Text(
+                                model.ttl,
+                                style: TextStyle(
+                                    fontSize: ww / 30,
+                                    fontWeight: FontWeight.w600),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Text(
+                              model.body,
                               style: TextStyle(
-                                  fontSize: ww / 30,
-                                  fontWeight: FontWeight.w600),
-                              maxLines: 1,
+                                  fontSize: ww / 40,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.w400),
+                              maxLines: 4,
                               overflow: TextOverflow.ellipsis,
                             ),
-                          ),
-                          Text(
-                            model.body,
-                            style: TextStyle(
-                                fontSize: ww / 40,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w400),
-                            maxLines: 4,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
 
@@ -167,6 +174,25 @@ class _forum_elementState extends State<forum_element> {
               ),
             ]),
           )),
+    );
+  }
+
+  dialog(double hh, double ww, StatelessWidget view) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0)), //this right here
+          child: Container(
+            height: hh,
+            width: ww,
+            child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Container(child: view)),
+          ),
+        );
+      },
     );
   }
 }

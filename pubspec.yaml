@@ -63,11 +63,11 @@ flutter:
   assets:
 
      - pic.jpg
-     - profile.jpg
      - bd.jpg
      - p2.jpg
      - chris.jpg
      - google_96px.png
+     - place_holder.jpg
 
 
 

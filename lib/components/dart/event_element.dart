@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/expanded/openEvent.dart';
+import 'package:flutterapp/inputui/event.dart';
 import 'package:flutterapp/model/event_model.dart';
 
 class event_element extends StatefulWidget {
@@ -76,10 +78,19 @@ class _event_elementState extends State<event_element> {
                       Container(
                         height: hh / 4.6,
                         width: ww * 0.25,
-                        child: Image(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            model.bgImg,
+                        child: InkWell(
+                          onTap: () {
+                            dialog(
+                                hh,
+                                ww,
+                                openEvent(
+                                    model.bgImg, model.ttl, model.description));
+                          },
+                          child: Image(
+                            fit: BoxFit.cover,
+                            image: AssetImage(
+                              model.bgImg,
+                            ),
                           ),
                         ),
                       ),
@@ -87,96 +98,106 @@ class _event_elementState extends State<event_element> {
                         height: hh / 8,
                         width: ww * .4,
                         margin: EdgeInsets.symmetric(horizontal: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              height: hh * 0.02,
-                              child: Text(
-                                model.ttl,
-                                style: TextStyle(
-                                    fontSize: ww / 30,
-                                    fontWeight: FontWeight.w600),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            Text(
-                              model.description,
-                              style: TextStyle(
-                                  fontSize: ww / 45,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w400),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            Container(
-                              height: ww / 35,
-                              margin: EdgeInsets.only(top: 2),
-                              child: Row(
-                                children: <Widget>[
-                                  Text(
-                                    model.date,
-                                    style: TextStyle(
-                                        fontSize: ww / 40,
-                                        fontWeight: FontWeight.w400),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(left: 8),
-                                    child: Text(
-                                      model.time,
-                                      style: TextStyle(
-                                          fontSize: ww / 40,
-                                          fontWeight: FontWeight.w700),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Text(
-                                  model.location,
+                        child: InkWell(
+                          onTap: () {
+                            dialog(
+                                hh,
+                                ww,
+                                openEvent(
+                                    model.bgImg, model.ttl, model.description));
+                          },
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                height: hh * 0.02,
+                                child: Text(
+                                  model.ttl,
                                   style: TextStyle(
-                                      fontSize: ww / 40,
-                                      fontWeight: FontWeight.w800),
+                                      fontSize: ww / 30,
+                                      fontWeight: FontWeight.w600),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                              ],
-                            ),
-                            Container(
-                              child: Row(
-                                children: <Widget>[
-                                  Text(
-                                    'Rate:',
-                                    style: TextStyle(
-                                        fontSize: ww / 45,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 5),
-                                    child: Text(
-                                      model.rate,
+                              ),
+                              Text(
+                                model.description,
+                                style: TextStyle(
+                                    fontSize: ww / 45,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.w400),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Container(
+                                height: ww / 35,
+                                margin: EdgeInsets.only(top: 2),
+                                child: Row(
+                                  children: <Widget>[
+                                    Text(
+                                      model.date,
                                       style: TextStyle(
-                                          fontSize: ww / 30,
-                                          color: Colors.green,
-                                          fontWeight: FontWeight.w600),
+                                          fontSize: ww / 40,
+                                          fontWeight: FontWeight.w400),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                     ),
+                                    Container(
+                                      margin: EdgeInsets.only(left: 8),
+                                      child: Text(
+                                        model.time,
+                                        style: TextStyle(
+                                            fontSize: ww / 40,
+                                            fontWeight: FontWeight.w700),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    model.location,
+                                    style: TextStyle(
+                                        fontSize: ww / 40,
+                                        fontWeight: FontWeight.w800),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ],
                               ),
-                            ),
-                          ],
+                              Container(
+                                child: Row(
+                                  children: <Widget>[
+                                    Text(
+                                      'Rate:',
+                                      style: TextStyle(
+                                          fontSize: ww / 45,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Container(
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 5),
+                                      child: Text(
+                                        model.rate,
+                                        style: TextStyle(
+                                            fontSize: ww / 30,
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.w600),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Container(
@@ -250,5 +271,24 @@ class _event_elementState extends State<event_element> {
             ]),
           ),
         ));
+  }
+
+  dialog(double hh, double ww, StatelessWidget view) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0)), //this right here
+          child: Container(
+            height: hh,
+            width: ww,
+            child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Container(child: view)),
+          ),
+        );
+      },
+    );
   }
 }

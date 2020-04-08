@@ -369,6 +369,7 @@ class _profileState extends State<profile> {
   dialog(double hh, double ww, StatefulWidget view) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return Dialog(
           shape: RoundedRectangleBorder(

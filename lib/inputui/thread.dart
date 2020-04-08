@@ -17,16 +17,46 @@ class _threadState extends State<thread> {
       child: Column(
         children: <Widget>[
           Container(
-            height: hh / 3.6,
-            width: ww * 0.6,
-            child: TextField(
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              maxLength: 300,
-              autofocus: true,
-              autocorrect: true,
-              decoration: InputDecoration(
-                  border: InputBorder.none, hintText: 'Say something'),
+            height: hh / 2.1,
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: hh / 8,
+                    width: ww * 0.8,
+                    child: TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      maxLength: 600,
+                      autofocus: true,
+                      autocorrect: true,
+                      decoration: InputDecoration(
+                          counterText: '',
+                          fillColor: Colors.grey[100],
+                          filled: true,
+                          border: InputBorder.none,
+                          hintText: 'Title'),
+                    ),
+                  ),
+                  Container(
+                    height: hh / 2.6,
+                    width: ww * 0.6,
+                    child: TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      maxLength: 600,
+                      autofocus: true,
+                      autocorrect: true,
+                      decoration: InputDecoration(
+                          counterText: '',
+                          fillColor: Colors.grey[100],
+                          filled: true,
+                          border: InputBorder.none,
+                          hintText: 'Start Discussion'),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Container(
@@ -42,7 +72,7 @@ class _threadState extends State<thread> {
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)),
-                color: Colors.blue,
+                color: Colors.blue[900],
                 onPressed: () {},
                 child: Row(
                   children: <Widget>[
@@ -56,7 +86,7 @@ class _threadState extends State<thread> {
                       child: Text(
                         'Start thread',
                         style: new TextStyle(
-                            color: Colors.grey[400],
+                            color: Colors.white,
                             fontSize: ww / 30,
                             fontWeight: FontWeight.w400),
                       ),

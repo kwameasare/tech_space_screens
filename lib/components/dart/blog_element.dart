@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/inputui/event.dart';
 import 'package:flutterapp/model/blog_model.dart';
+import 'package:flutterapp/expanded/openBlog.dart';
 
 class blog_element extends StatefulWidget {
   final blog_model blog_mod;
@@ -43,7 +45,8 @@ class _blog_elementState extends State<blog_element> {
             child: Stack(children: <Widget>[
               InkWell(
                 onTap: () {
-                  Navigator.of(context).pushNamed('/detail');
+                  dialog(
+                      hh, ww, openBlog(model.bgImg, model.ttl, model.status));
                   setState(() {});
                 },
               ),
@@ -81,35 +84,42 @@ class _blog_elementState extends State<blog_element> {
                     ),
 
                     Container(
-                        height: hh * 0.19,
+                        height: hh * 0.2,
                         width: ww * 0.45,
-                        child: Stack(children: <Widget>[
-                          Container(
-                            height: hh * 0.2,
-                            width: ww * 0.45,
-                            child: Image(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                model.bgImg,
+                        child: InkWell(
+                          onTap: () {
+                            print('object');
+                            dialog(hh, ww,
+                                openBlog(model.bgImg, model.ttl, model.status));
+                          },
+                          child: Stack(children: <Widget>[
+                            Container(
+                              height: hh * 0.2,
+                              width: ww * 0.45,
+                              child: Image(
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                  model.bgImg,
+                                ),
                               ),
                             ),
-                          ),
-                          Center(
-                            child: Container(
-                              padding:
-                                  EdgeInsets.symmetric(horizontal: ww / 60),
-                              child: Text(
-                                model.status,
-                                style: TextStyle(
-                                    fontSize: ww / 60,
-                                    color: Colors.white,
-                                    backgroundColor: Color(0xcc000000)),
-                                maxLines: 4,
-                                overflow: TextOverflow.ellipsis,
+                            Center(
+                              child: Container(
+                                padding:
+                                    EdgeInsets.symmetric(horizontal: ww / 60),
+                                child: Text(
+                                  model.status,
+                                  style: TextStyle(
+                                      fontSize: ww / 60,
+                                      color: Colors.white,
+                                      backgroundColor: Color(0xcc000000)),
+                                  maxLines: 4,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
-                            ),
-                          )
-                        ])),
+                            )
+                          ]),
+                        )),
 
                     Container(
                       height: hh * 0.04,
@@ -174,6 +184,25 @@ class _blog_elementState extends State<blog_element> {
                   ]),
             ])),
       ),
+    );
+  }
+
+  dialog(double hh, double ww, StatelessWidget view) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0)), //this right here
+          child: Container(
+            height: hh,
+            width: ww,
+            child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Container(child: view)),
+          ),
+        );
+      },
     );
   }
 }

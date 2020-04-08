@@ -50,22 +50,22 @@ class _eventState extends State<event> {
     double ww = MediaQuery.of(context).size.width;
     double hh = MediaQuery.of(context).size.height;
     return Container(
-        height: hh / 4,
+        height: hh / 2.5,
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: <Widget>[
                 Container(
-                  height: hh / 3.8,
+                  width: ww / 6,
+                  height: ww / 6,
+                  child: showImage(),
+                ),
+                Container(
+                  height: hh / 2.5,
                   child: SingleChildScrollView(
                     child: Column(
                       children: <Widget>[
-                        Container(
-                          width: ww / 6,
-                          height: ww / 6,
-                          child: showImage(),
-                        ),
                         Container(
                           height: ww / 12,
                           width: ww * 0.4,
@@ -213,7 +213,7 @@ class _eventState extends State<event> {
                             child: Text(
                               'Post Event',
                               style: new TextStyle(
-                                  color: Colors.grey[400],
+                                  color: Colors.white,
                                   fontSize: ww / 30,
                                   fontWeight: FontWeight.w400),
                             ),
